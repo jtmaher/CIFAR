@@ -2,6 +2,7 @@ from keras import backend as K
 if K.backend()=='tensorflow':
         K.set_image_dim_ordering("th")
 
+import numpy as np
 
 
 class Model(object):
@@ -12,6 +13,10 @@ class Model(object):
 
     def save(self, filename):
         self.model.save(filename)
+
+    def load(self, filename):
+        from keras.models import load_model
+        self.model = load_model(filename)
         
     def hourglass(self):
         from keras import regularizers
@@ -64,7 +69,7 @@ class Model(object):
                         validation_data=(data.test_x, data.test_x), 
                         epochs=epochs, verbose=verbose)
             
-    def comp(self, i, model, feat):
+    def comp(self, i,  feat):
         from matplotlib import pyplot as plt
         plt.figure()
         plt.imshow(np.clip(np.transpose(feat[i], (1,2,0)),0,1))
