@@ -64,8 +64,8 @@ class Model(object):
         self.model = model
         self.eval_hidden = K.function([ll[0].input], [ll[11].output])
         
-    def fit(self, data, epochs=1, verbose=1):
-         self.model.fit(data.train_x, data.train_x, batch_size=128,
+    def fit(self, data, epochs=1, verbose=1, batch_size=128):
+         self.model.fit(data.train_x, data.train_x, batch_size=batch_size,
                         validation_data=(data.test_x, data.test_x), 
                         epochs=epochs, verbose=verbose)
             

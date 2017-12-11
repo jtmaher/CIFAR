@@ -1,5 +1,3 @@
-import pickle
-
 from data import CIFAR10
 from model import Model
 
